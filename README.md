@@ -15,12 +15,12 @@ TODO: Fill in this table with correct information.
 
 | Table                     | Name         | Github Id |
 |---------------------------|--------------|-----------|
-| UCSBDiningCommonsMenuItem |              |           |
-| UCSBOrganization          |              |           |
-| RecommendationRequest     |              |           |
-| MenuItemReview            |              |           |
-| HelpRequest               |              |           |
-| Articles                  |              |           |
+| UCSBDiningCommonsMenuItem | Jay Joo      | tizerk    |
+| UCSBOrganization          | Yuxiang Zhang| yxz29315  |
+| RecommendationRequest     | Hung Khuu    | Hungkhuu04|
+| MenuItemReview            | Simon Yan    | simony05  |
+| HelpRequest               | Michael Wu   | mic-wu    |
+| Articles                  | Arthur Wu    | arthurwu17|
 
 Remember though, that in spite of these initial  assignments, it is still
 a team project.  Please help other team members to finish their work
