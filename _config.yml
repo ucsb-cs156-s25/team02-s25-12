@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s25/team02-s25-12
 owner: ucsb-cs156-s25
 repo_name: team02-s25-12
-pull_requests: [{"author":{"id":"MDQ6VXNlcjY3NTU5NDUy","is_bot":false,"login":"simony05","name":"Simon Yan"},"headRefName":"Simon-MenuItemReviews-CRUD","number":63,"title":"Simon-MenuItemReviews-CRUD","url":"https://github.com/ucsb-cs156-s25/team02-s25-12/pull/63"},{"author":{"id":"MDQ6VXNlcjMwOTM2NDI2","is_bot":false,"login":"arthurwu17","name":"Arthur Wu"},"headRefName":"aw-articles","number":62,"title":"aw - Copied files for Articles from team01 to team02","url":"https://github.com/ucsb-cs156-s25/team02-s25-12/pull/62"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjY3NTU5NDUy","is_bot":false,"login":"simony05","name":"Simon Yan"},"headRefName":"Simon-MenuItemReviews-CRUD","number":63,"title":"Simon-MenuItemReviews-CRUD","url":"https://github.com/ucsb-cs156-s25/team02-s25-12/pull/63"}]
