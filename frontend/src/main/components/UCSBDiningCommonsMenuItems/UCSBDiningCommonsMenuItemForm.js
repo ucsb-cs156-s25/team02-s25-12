@@ -63,6 +63,10 @@ function UCSBDiningCommonsMenuItemForm({
           isInvalid={Boolean(errors.name)}
           {...register("name", {
             required: "Name is required.",
+            maxLength: {
+              value: 255,
+              message: "Max length 255 characters",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
