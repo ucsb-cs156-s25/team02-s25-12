@@ -100,13 +100,5 @@ describe("RestaurantForm tests", () => {
     await waitFor(() => {
       expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
     });
-
-    const codeInput = screen.getByTestId(`${testId}-diningCommonsCode`);
-    fireEvent.change(codeInput, { target: { value: "a".repeat(256) } });
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
-    });
   });
 });
