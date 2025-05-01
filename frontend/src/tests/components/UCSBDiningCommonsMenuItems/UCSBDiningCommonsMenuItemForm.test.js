@@ -13,7 +13,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigate,
 }));
 
-describe("RestaurantForm tests", () => {
+describe("UCSBDiningCommonsMenuItemForm tests", () => {
   const queryClient = new QueryClient();
 
   const expectedHeaders = ["diningCommonsCode", "Name", "Station"];
