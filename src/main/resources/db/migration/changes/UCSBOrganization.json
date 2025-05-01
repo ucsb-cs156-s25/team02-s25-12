@@ -1,0 +1,48 @@
+{
+    "databaseChangeLog": [
+      {
+        "changeSet": {
+          "id": "UCSBOrganization",
+          "author": "yxz29315",
+          "changes": [
+            {
+              "createTable": {
+                "tableName": "ucsborganizations",
+                "columns": [
+                  {
+                    "column": {
+                      "name": "org_code",
+                      "type": "varchar(64)",
+                      "constraints": { "primaryKey": true }
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "org_translation_short",
+                      "type": "varchar(255)",
+                      "constraints": { "nullable": false }
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "org_translation",
+                      "type": "varchar(255)",
+                      "constraints": { "nullable": false }
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "inactive",
+                      "type": "boolean",
+                      "constraints": { "nullable": false }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  
