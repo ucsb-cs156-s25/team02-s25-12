@@ -33,7 +33,8 @@ const helpRequestsFixtures = {
       teamId: "team-04",
       tableOrBreakoutRoom: "table-04",
       requestTime: "2025-04-01T01:23:45",
-      explanation: "unsure if riemann zeta function has zeros only at negative even integers and complex numbers w/ real part 1/2.",
+      explanation:
+        "unsure if riemann zeta function has zeros only at negative even integers and complex numbers w/ real part 1/2.",
       solved: true,
     },
   ],
