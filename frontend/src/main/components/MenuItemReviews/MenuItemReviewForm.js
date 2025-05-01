@@ -64,7 +64,7 @@ function MenuItemReviewForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="revieweremail">Reviewer Email</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-revieweremail"}
+          // data-testid={testIdPrefix + "-revieweremail"}
           id="revieweremail"
           type="text"
           isInvalid={Boolean(errors.revieweremail)}
@@ -80,7 +80,7 @@ function MenuItemReviewForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="stars">Stars</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-stars"}
+          // data-testid={testIdPrefix + "-stars"}
           id="stars"
           type="text"
           isInvalid={Boolean(errors.stars)}
@@ -96,7 +96,7 @@ function MenuItemReviewForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="comments">Comments</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-comments"}
+          // data-testid={testIdPrefix + "-comments"}
           id="comments"
           type="text"
           isInvalid={Boolean(errors.comments)}
@@ -112,7 +112,7 @@ function MenuItemReviewForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="datereviewed">Date (iso format)</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-datereviewed"}
+          // data-testid={testIdPrefix + "-datereviewed"}
           id="datereviewed"
           type="datetime-local"
           isInvalid={Boolean(errors.datereviewed)}
@@ -126,7 +126,9 @@ function MenuItemReviewForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+      <Button
+        type="submit" /* <Button type="submit" data-testid={testIdPrefix + "-submit"}> */
+      >
         {buttonLabel}
       </Button>
       <Button
