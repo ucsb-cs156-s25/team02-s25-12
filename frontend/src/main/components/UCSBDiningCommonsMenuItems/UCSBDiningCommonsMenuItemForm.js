@@ -38,6 +38,7 @@ function UCSBDiningCommonsMenuItemForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="diningCommonsCode">diningCommonsCode</Form.Label>
         <Form.Control
+          data-testid={"UCSBDiningCommonsMenuItemForm-diningCommonsCode"}
           id="diningCommonsCode"
           type="text"
           isInvalid={Boolean(errors.diningCommonsCode)}
@@ -71,6 +72,7 @@ function UCSBDiningCommonsMenuItemForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="station">Station</Form.Label>
         <Form.Control
+          data-testid={"UCSBDiningCommonsMenuItemForm-station"}
           id="station"
           type="text"
           isInvalid={Boolean(errors.station)}
@@ -82,7 +84,12 @@ function UCSBDiningCommonsMenuItemForm({
           {errors.station?.message}
         </Form.Control.Feedback>
       </Form.Group>
-      <Button type="submit">{buttonLabel}</Button>
+      <Button
+        type="submit"
+        data-testid={"UCSBDiningCommonsMenuItemForm-submit"}
+      >
+        {buttonLabel}
+      </Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
