@@ -59,7 +59,7 @@ function ArticlesForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.name?.message}
+          {errors.title?.message}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -72,10 +72,6 @@ function ArticlesForm({
           isInvalid={Boolean(errors.url)}
           {...register("url", {
             required: "Url is required.",
-            maxLength: {
-              value: 255,
-              message: "Max length 255 characters",
-            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -92,10 +88,6 @@ function ArticlesForm({
           isInvalid={Boolean(errors.explanation)}
           {...register("explanation", {
             required: "Explanation is required.",
-            maxLength: {
-              value: 255,
-              message: "Max length 255 characters",
-            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -109,13 +101,9 @@ function ArticlesForm({
           data-testid={testIdPrefix + "-email"}
           id="email"
           type="text"
-          isInvalid={Boolean(errors.emmail)}
+          isInvalid={Boolean(errors.email)}
           {...register("email", {
             required: "Email is required.",
-            maxLength: {
-              value: 255,
-              message: "Max length 255 characters",
-            },
           })}
         />
         <Form.Control.Feedback type="invalid">
