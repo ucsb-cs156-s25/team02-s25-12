@@ -66,7 +66,6 @@ function ArticlesForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="url">Url</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-url"}
           id="url"
           type="text"
           isInvalid={Boolean(errors.url)}
@@ -82,7 +81,6 @@ function ArticlesForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="explanation">Explanation</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-explanation"}
           id="explanation"
           type="text"
           isInvalid={Boolean(errors.explanation)}
@@ -98,7 +96,6 @@ function ArticlesForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="email">Email</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-email"}
           id="email"
           type="text"
           isInvalid={Boolean(errors.email)}
@@ -114,7 +111,6 @@ function ArticlesForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="dateAdded">Date Added (iso format)</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-dateAdded"}
           id="dateAdded"
           type="datetime-local"
           isInvalid={Boolean(errors.dateAdded)}
@@ -128,9 +124,7 @@ function ArticlesForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
-        {buttonLabel}
-      </Button>
+      <Button type="submit">{buttonLabel}</Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
