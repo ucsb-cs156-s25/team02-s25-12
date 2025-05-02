@@ -24,7 +24,9 @@ describe("HelpRequestForm tests", () => {
   test("renders correctly when passing in a HelpRequest", async () => {
     render(
       <Router>
-        <HelpRequestForm initialContents={helpRequestsFixtures.oneHelpRequest} />
+        <HelpRequestForm
+          initialContents={helpRequestsFixtures.oneHelpRequest}
+        />
       </Router>,
     );
     await screen.findByTestId(/HelpRequestForm-id/);
@@ -45,7 +47,9 @@ describe("HelpRequestForm tests", () => {
 
     await screen.findByText(/Requester Email is required./);
     expect(screen.getByText(/Team ID is required./)).toBeInTheDocument();
-    expect(screen.getByText(/Table Or Breakout Room is required./)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Table Or Breakout Room is required./),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
   });
@@ -60,21 +64,31 @@ describe("HelpRequestForm tests", () => {
     );
     await screen.findByTestId("HelpRequestForm-requesterEmail");
 
-    const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+    const requesterEmailField = screen.getByTestId(
+      "HelpRequestForm-requesterEmail",
+    );
     const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-    const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
+    const tableOrBreakoutRoomField = screen.getByTestId(
+      "HelpRequestForm-tableOrBreakoutRoom",
+    );
     const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
     const explanationField = screen.getByTestId("HelpRequestForm-explanation");
     const solvedField = screen.getByTestId("HelpRequestForm-solved");
     const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-    fireEvent.change(requesterEmailField, { target: { value: "foo@ucsb.edu" } });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "foo@ucsb.edu" },
+    });
     fireEvent.change(teamIdField, { target: { value: "team-12" } });
-    fireEvent.change(tableOrBreakoutRoomField, { target: { value: "table-12" } });
+    fireEvent.change(tableOrBreakoutRoomField, {
+      target: { value: "table-12" },
+    });
     fireEvent.change(requestTimeField, {
       target: { value: "2022-01-02T12:00:00" },
     });
-    fireEvent.change(explanationField, { target: { value: "my socks are untied." } });
+    fireEvent.change(explanationField, {
+      target: { value: "my socks are untied." },
+    });
     fireEvent.change(solvedField, { target: { checked: false } });
     fireEvent.click(submitButton);
 
