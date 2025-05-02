@@ -65,7 +65,7 @@ public class UCSBOrganizationController extends ApiController {
 
     /**
      * Update a single UCSBOrganization. Accessible only to users with the role "ROLE_ADMIN".
-     * @param id       the orgCode (String) – (@Id field)
+     * @param orgCode       the orgCode (String) – (@Id field)
      * @param incoming the new organization contents
      * @return the updated UCSBOrganization
      */
@@ -114,7 +114,7 @@ public class UCSBOrganizationController extends ApiController {
 
     /**
      * Delete a UCSBOrganization. Accessible only to users with the role "ROLE_ADMIN".
-     * @param id  the orgCode (String) (@Id field)
+     * @param orgCode the orgCode (String) (@Id field)
      * @return a message indicating the organization was deleted
      */
     @Operation(summary = "Delete a single organization")
