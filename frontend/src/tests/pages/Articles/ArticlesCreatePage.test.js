@@ -5,7 +5,6 @@ import { MemoryRouter } from "react-router-dom";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
@@ -73,8 +72,7 @@ describe("ArticlesCreatePage tests", () => {
       dateAdded: "2022-04-20T00:00:00",
     };
 
-    axiosMock.onPost("/api/articles/post").reply(202, articles);
-
+    axiosMock.onPost("/api/articles/post").reply(202, articles)
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
