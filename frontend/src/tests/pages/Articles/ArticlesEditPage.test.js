@@ -111,13 +111,14 @@ describe("ArticlesEditPage tests", () => {
 
       await screen.findByTestId("ArticlesForm-id");
 
-      const idField = screen.getByTestId("ArticlesForm-id");
-      const titleField = screen.getByTestId("ArticlesForm-title");
-      const urlField = screen.getByTestId("ArticlesForm-url");
-      const explanationField = screen.getByTestId("ArticlesForm-explanation");
-      const emailField = screen.getByTestId("ArticlesForm-email");
-      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
-      const submitButton = screen.getByTestId("ArticlesForm-submit");
+      const idField = screen.getByLabelText("Id");
+      const titleField = screen.getByLabelText("Title");
+      const urlField = screen.getByLabelText("Url");
+      const explanationField = screen.getByLabelText("Explanation");
+      const emailField = screen.getByLabelText("Email");
+      const dateAddedField = screen.getByLabelText("Date Added (iso format)");
+
+      const submitButton = screen.getByText("Update");
 
       expect(idField).toBeInTheDocument();
       expect(idField).toHaveValue("1");
@@ -193,13 +194,14 @@ describe("ArticlesEditPage tests", () => {
 
       await screen.findByTestId("ArticlesForm-id");
 
-      const idField = screen.getByTestId("ArticlesForm-id");
-      const titleField = screen.getByTestId("ArticlesForm-title");
-      const urlField = screen.getByTestId("ArticlesForm-url");
-      const explanationField = screen.getByTestId("ArticlesForm-explanation");
-      const emailField = screen.getByTestId("ArticlesForm-email");
-      const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
-      const submitButton = screen.getByTestId("ArticlesForm-submit");
+      const idField = screen.getByLabelText("Id");
+      const titleField = screen.getByLabelText("Title");
+      const urlField = screen.getByLabelText("Url");
+      const explanationField = screen.getByLabelText("Explanation");
+      const emailField = screen.getByLabelText("Email");
+      const dateAddedField = screen.getByLabelText("Date Added (iso format)");
+
+      const submitButton = screen.getByText("Update");
 
       expect(idField).toHaveValue("1");
       expect(titleField).toHaveValue(
