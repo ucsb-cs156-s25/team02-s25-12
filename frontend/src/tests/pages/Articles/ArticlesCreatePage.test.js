@@ -58,16 +58,19 @@ describe("ArticlesCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByLabelText("Name")).toBeInTheDocument();
+      expect(screen.getByLabelText("Title")).toBeInTheDocument();
     });
   });
 
   test("on submit, makes request to backend, and redirects to /articles", async () => {
     const queryClient = new QueryClient();
     const articles = {
-      id: 3,
-      name: "South Coast Deli",
-      description: "Sandwiches and Salads",
+      id: 1,
+      title: "Using testing-playground with React Testing Library",
+      url: "https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7",
+      explanation: "Helpful when we get to front end development",
+      email: "phtcon@ucsb.edu",
+      dateAdded: "2022-04-20T00:00:00",
     };
 
     axiosMock.onPost("/api/articles/post").reply(202, articles);
@@ -81,35 +84,60 @@ describe("ArticlesCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByLabelText("Name")).toBeInTheDocument();
+      expect(screen.getByLabelText("Title")).toBeInTheDocument();
     });
 
-    const nameInput = screen.getByLabelText("Name");
-    expect(nameInput).toBeInTheDocument();
+    const titleInput = screen.getByLabelText("Title");
+    expect(titleInput).toBeInTheDocument();
 
-    const descriptionInput = screen.getByLabelText("Description");
-    expect(descriptionInput).toBeInTheDocument();
+    const urlInput = screen.getByLabelText("Url");
+    expect(urlInput).toBeInTheDocument();
+
+    const explanationInput = screen.getByLabelText("Explanation");
+    expect(explanationInput).toBeInTheDocument();
+
+    const emailInput = screen.getByLabelText("Email");
+    expect(emailInput).toBeInTheDocument();
+
+    const dateAddedInput = screen.getByLabelText("Date Added (iso format)");
+    expect(dateAddedInput).toBeInTheDocument();
 
     const createButton = screen.getByText("Create");
     expect(createButton).toBeInTheDocument();
 
-    fireEvent.change(nameInput, { target: { value: "South Coast Deli" } });
-    fireEvent.change(descriptionInput, {
-      target: { value: "Sandwiches and Salads" },
+    fireEvent.change(titleInput, {
+      target: { value: "Using testing-playground with React Testing Library" },
     });
+    fireEvent.change(urlInput, {
+      target: {
+        value:
+          "https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7",
+      },
+    });
+    fireEvent.change(explanationInput, {
+      target: { value: "Helpful when we get to front end development" },
+    });
+    fireEvent.change(emailInput, { target: { value: "phtcon@ucsb.edu" } });
+    fireEvent.change(dateAddedInput, {
+      target: { value: "2022-04-20T00:00:00" },
+    });
+
     fireEvent.click(createButton);
 
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      name: "South Coast Deli",
-      description: "Sandwiches and Salads",
+      title: "Using testing-playground with React Testing Library",
+      url: "https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7",
+      explanation: "Helpful when we get to front end development",
+      email: "phtcon@ucsb.edu",
+      dateAdded: "2022-04-20T00:00",
     });
 
     // assert - check that the toast was called with the expected message
-    expect(mockToast).toBeCalledWith(
-      "New articles Created - id: 3 name: South Coast Deli",
+    expect(mockToast).toHaveBeenCalledWith(
+      "New articles Created - id: 1 title: Using testing-playground with React Testing Library",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/articles" });
+    expect(mockNavigate).toHaveBeenCalledWith({ to: "/articles" });
   });
 });
