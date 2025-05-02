@@ -65,7 +65,7 @@ import jakarta.validation.Valid;
 
     /**
      * Update a single UCSBOrganization. Accessible only to users with the role &quot;ROLE_ADMIN&quot;.
-     * @param id       the orgCode (String) – (@Id field)
+     * @param orgCode       the orgCode (String) – (@Id field)
      * @param incoming the new organization contents
      * @return the updated UCSBOrganization
      */
@@ -114,7 +114,7 @@ import jakarta.validation.Valid;
 
     /**
      * Delete a UCSBOrganization. Accessible only to users with the role &quot;ROLE_ADMIN&quot;.
-     * @param id  the orgCode (String) (@Id field)
+     * @param orgCode the orgCode (String) (@Id field)
      * @return a message indicating the organization was deleted
      */
     @Operation(summary = &quot;Delete a single organization&quot;)
