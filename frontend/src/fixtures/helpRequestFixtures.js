@@ -1,5 +1,5 @@
 const helpRequestsFixtures = {
-  oneDate: {
+  oneHelpRequest: {
     id: 1,
     requesterEmail: "foo@ucsb.edu",
     teamId: "team-12",
@@ -8,7 +8,7 @@ const helpRequestsFixtures = {
     explanation: "my socks are untied.",
     solved: false,
   },
-  threeDates: [
+  threeHelpRequests: [
     {
       id: 1,
       requesterEmail: "foo@ucsb.edu",
