@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemForm";
-import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
+import ArticlesForm from "main/components/Articles/ArticlesForm";
+import { articlesFixtures } from "fixtures/articlesFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -13,17 +13,23 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigate,
 }));
 
-describe("UCSBDiningCommonsMenuItemForm tests", () => {
+describe("ArticlesForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["diningCommonsCode", "Name", "Station"];
-  const testId = "UCSBDiningCommonsMenuItemForm";
+  const expectedHeaders = [
+    "Title",
+    "Url",
+    "Explanation",
+    "Email",
+    "Date Added (iso format)",
+  ];
+  const testId = "ArticlesForm";
 
   test("renders correctly with no initialContents", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm />
+          <ArticlesForm />
         </Router>
       </QueryClientProvider>,
     );
@@ -40,11 +46,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm
-            initialContents={
-              ucsbDiningCommonsMenuItemFixtures.oneUCSBDiningCommonsMenuItem
-            }
-          />
+          <ArticlesForm initialContents={articlesFixtures.oneArticles} />
         </Router>
       </QueryClientProvider>,
     );
@@ -64,7 +66,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm />
+          <ArticlesForm />
         </Router>
       </QueryClientProvider>,
     );
@@ -80,7 +82,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm />
+          <ArticlesForm />
         </Router>
       </QueryClientProvider>,
     );
@@ -89,12 +91,14 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     const submitButton = screen.getByText(/Create/);
     fireEvent.click(submitButton);
 
-    await screen.findByText(/diningCommonsCode is required/);
-    expect(screen.getByText(/Name is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Station is required/)).toBeInTheDocument();
+    await screen.findByText(/Title is required/);
+    expect(screen.getByText(/Url is required/)).toBeInTheDocument();
+    expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
+    expect(screen.getByText(/Email is required/)).toBeInTheDocument();
+    expect(screen.getByText(/DateAdded is required/)).toBeInTheDocument();
 
-    const nameInput = screen.getByTestId(`${testId}-name`);
-    fireEvent.change(nameInput, { target: { value: "a".repeat(256) } });
+    const titleInput = screen.getByTestId(`${testId}-title`);
+    fireEvent.change(titleInput, { target: { value: "a".repeat(256) } });
     fireEvent.click(submitButton);
 
     await waitFor(() => {

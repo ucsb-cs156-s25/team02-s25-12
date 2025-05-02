@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemForm";
-import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
+import MenuItemReviewForm from "main/components/MenuItemReviews/MenuItemReviewForm";
+import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -13,17 +13,23 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigate,
 }));
 
-describe("UCSBDiningCommonsMenuItemForm tests", () => {
+describe("MenuItemReviewForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["diningCommonsCode", "Name", "Station"];
-  const testId = "UCSBDiningCommonsMenuItemForm";
+  const expectedHeaders = [
+    "Item Id",
+    "Reviewer Email",
+    "Stars",
+    "Comments",
+    "Date (iso format)",
+  ];
+  const testId = "MenuItemReviewForm";
 
   test("renders correctly with no initialContents", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm />
+          <MenuItemReviewForm />
         </Router>
       </QueryClientProvider>,
     );
@@ -40,10 +46,8 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm
-            initialContents={
-              ucsbDiningCommonsMenuItemFixtures.oneUCSBDiningCommonsMenuItem
-            }
+          <MenuItemReviewForm
+            initialContents={menuItemReviewFixtures.oneReview}
           />
         </Router>
       </QueryClientProvider>,
@@ -64,7 +68,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm />
+          <MenuItemReviewForm />
         </Router>
       </QueryClientProvider>,
     );
@@ -80,7 +84,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBDiningCommonsMenuItemForm />
+          <MenuItemReviewForm />
         </Router>
       </QueryClientProvider>,
     );
@@ -89,16 +93,18 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     const submitButton = screen.getByText(/Create/);
     fireEvent.click(submitButton);
 
-    await screen.findByText(/diningCommonsCode is required/);
-    expect(screen.getByText(/Name is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Station is required/)).toBeInTheDocument();
+    await screen.findByText(/Item Id is required/);
+    expect(screen.getByText(/Reviewer Email is required/)).toBeInTheDocument();
+    expect(screen.getByText(/Stars is required/)).toBeInTheDocument();
+    expect(screen.getByText(/Comments is required/)).toBeInTheDocument();
+    expect(screen.getByText(/Date Reviewed is required/)).toBeInTheDocument();
 
-    const nameInput = screen.getByTestId(`${testId}-name`);
-    fireEvent.change(nameInput, { target: { value: "a".repeat(256) } });
+    const nameInput = screen.getByTestId(`${testId}-itemid`);
+    fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
+      expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
     });
   });
 });
