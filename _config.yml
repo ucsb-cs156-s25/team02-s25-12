@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s25/team02-s25-12
 owner: ucsb-cs156-s25
 repo_name: team02-s25-12
-pull_requests: [{"author":{"id":"U_kgDOB3b6TA","is_bot":false,"login":"Hungkhuu04","name":""},"headRefName":"hk-copy-backend-for-recrequests","number":86,"title":"hk - copy backend CRUD operations from team01 for the recommendation …","url":"https://github.com/ucsb-cs156-s25/team02-s25-12/pull/86"},{"author":{"id":"MDQ6VXNlcjMwOTM2NDI2","is_bot":false,"login":"arthurwu17","name":"Arthur Wu"},"headRefName":"aw-articles-edit-page","number":85,"title":"Aw articles edit page","url":"https://github.com/ucsb-cs156-s25/team02-s25-12/pull/85"}]
+pull_requests: [{"author":{"id":"U_kgDOB3b6TA","is_bot":false,"login":"Hungkhuu04","name":""},"headRefName":"hk-copy-backend-for-recrequests","number":86,"title":"hk - copy backend CRUD operations from team01 for the recommendation …","url":"https://github.com/ucsb-cs156-s25/team02-s25-12/pull/86"}]
