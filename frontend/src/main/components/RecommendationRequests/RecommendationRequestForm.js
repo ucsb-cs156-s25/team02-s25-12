@@ -89,7 +89,7 @@ function RecommendationRequestForm({
 
       <Form.Group className="mb-3">
         <Form.Label htmlFor="dateRequested">
-          Date Requested{" "}
+          Date Requested
           <small className="text-muted">
             (ISO: YYYY-MM-DDTHH:MM or YYYY-MM-DDTHH:MM:SS)
           </small>
@@ -114,7 +114,7 @@ function RecommendationRequestForm({
 
       <Form.Group className="mb-3">
         <Form.Label htmlFor="dateNeeded">
-          Date Needed{" "}
+          Date Needed
           <small className="text-muted">
             (ISO: YYYY-MM-DDTHH:MM or YYYY-MM-DDTHH:MM:SS)
           </small>

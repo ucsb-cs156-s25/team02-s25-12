@@ -24,7 +24,7 @@ describe("RecommendationRequestForm tests", () => {
     /Date Needed/,
     /Done\?/,
   ];
-
+  
   const testId = "RecommendationRequestForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -33,16 +33,16 @@ describe("RecommendationRequestForm tests", () => {
         <Router>
           <RecommendationRequestForm />
         </Router>
-      </QueryClientProvider>,
-      "",
+      </QueryClientProvider>,""
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
 
     expectedHeadersRegex.forEach((labelRegex) => {
-      const header = screen.getByLabelText(labelRegex);
-      expect(header).toBeInTheDocument();
-    });
+        const header = screen.getByLabelText(labelRegex);
+        expect(header).toBeInTheDocument();
+      });
+      
   });
   test("submitAction is called with correct data on valid input", async () => {
     const mockSubmitAction = jest.fn();
@@ -56,13 +56,13 @@ describe("RecommendationRequestForm tests", () => {
     );
 
     // Fill required fields
-    fireEvent.change(screen.getByLabelText("Requester Email"), {
+    fireEvent.change(screen.getByLabelText(/Requester Email/), {
       target: { value: "student@ucsb.edu" },
     });
-    fireEvent.change(screen.getByLabelText("Professor Email"), {
+    fireEvent.change(screen.getByLabelText(/Professor Email/), {
       target: { value: "prof@ucsb.edu" },
     });
-    fireEvent.change(screen.getByLabelText("Explanation"), {
+    fireEvent.change(screen.getByLabelText(/Explanation/), {
       target: { value: "Strong recommendation please!" },
     });
     fireEvent.change(screen.getByLabelText(/Date Requested/), {
@@ -136,9 +136,10 @@ describe("RecommendationRequestForm tests", () => {
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
 
     expectedHeadersRegex.forEach((labelRegex) => {
-      const header = screen.getByLabelText(labelRegex);
-      expect(header).toBeInTheDocument();
-    });
+        const header = screen.getByLabelText(labelRegex);
+        expect(header).toBeInTheDocument();
+      });
+      
 
     expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
     expect(screen.getByText("Id")).toBeInTheDocument();
