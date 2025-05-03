@@ -15,12 +15,31 @@ function RecommendationRequestForm({
   } = useForm({ defaultValues: initialContents || {} });
   // Stryker restore all
 
-  const navigate = useNavigate();
+  // Stryker disable Regex
+  const isodate_regex =
+    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+  // Stryker restore Regex
 
+  const navigate = useNavigate();
   const testIdPrefix = "RecommendationRequestForm";
 
+  function onSubmit(data) {
+    const formattedData = {
+      ...data,
+      dateRequested:
+        data.dateRequested.length === 16
+          ? data.dateRequested + ":00"
+          : data.dateRequested,
+      dateNeeded:
+        data.dateNeeded.length === 16
+          ? data.dateNeeded + ":00"
+          : data.dateNeeded,
+    };
+    submitAction(formattedData);
+  }
+
   return (
-    <Form onSubmit={handleSubmit(submitAction)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       {initialContents && (
         <Form.Group className="mb-3">
           <Form.Label htmlFor="id">Id</Form.Label>
@@ -93,6 +112,10 @@ function RecommendationRequestForm({
           isInvalid={Boolean(errors.dateRequested)}
           {...register("dateRequested", {
             required: "Date Requested is required.",
+            pattern: {
+              value: isodate_regex,
+              message: "Must be in ISO format: YYYY-MM-DDTHH:MM or THH:MM:SS",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -109,6 +132,10 @@ function RecommendationRequestForm({
           isInvalid={Boolean(errors.dateNeeded)}
           {...register("dateNeeded", {
             required: "Date Needed is required.",
+            pattern: {
+              value: isodate_regex,
+              message: "Must be in ISO format: YYYY-MM-DDTHH:MM or THH:MM:SS",
+            },
           })}
         />
         <Form.Control.Feedback type="invalid">
