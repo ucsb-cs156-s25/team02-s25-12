@@ -85,9 +85,7 @@ describe("RecommendationRequestsCreatePage tests", () => {
       </QueryClientProvider>,
     );
 
-    await waitFor(() =>
-      expect(screen.getByLabelText("Requester Email")).toBeInTheDocument(),
-    );
+    await screen.findByLabelText("Requester Email");
 
     // act – fill in and submit form
     fireEvent.change(screen.getByLabelText("Requester Email"), {
