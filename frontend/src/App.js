@@ -83,25 +83,6 @@ function App() {
         )}
         {hasRole(currentUser, "ROLE_USER") && (
           <>
-            <Route exact path="/articles" element={<ArticlesIndexPage />} />
-          </>
-        )}
-        {hasRole(currentUser, "ROLE_ADMIN") && (
-          <>
-            <Route
-              exact
-              path="/articles/edit/:id"
-              element={<ArticlesEditPage />}
-            />
-            <Route
-              exact
-              path="/articles/create"
-              element={<ArticlesCreatePage />}
-            />
-          </>
-        )}
-        {hasRole(currentUser, "ROLE_USER") && (
-          <>
             <Route
               exact
               path="/ucsbdiningcommonsmenuitems"
@@ -120,6 +101,25 @@ function App() {
               exact
               path="/ucsbdiningcommonsmenuitems/create"
               element={<UCSBDiningCommonsMenuItemsCreatePage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_USER") && (
+          <>
+            <Route exact path="/articles" element={<ArticlesIndexPage />} />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
+            <Route
+              exact
+              path="/articles/edit/:id"
+              element={<ArticlesEditPage />}
+            />
+            <Route
+              exact
+              path="/articles/create"
+              element={<ArticlesCreatePage />}
             />
           </>
         )}
