@@ -15,7 +15,8 @@ const ucsbOrganizationFixtures = {
     {
       orgCode: "IEEE",
       orgTranslationShort: "IEEE STUDENT BRANCH",
-      orgTranslation: "INSTITUTE OF ELECTRICAL & ELECTRONICS ENGINEERS STUDENT BRANCH",
+      orgTranslation:
+        "INSTITUTE OF ELECTRICAL & ELECTRONICS ENGINEERS STUDENT BRANCH",
       inactive: false,
     },
     {
