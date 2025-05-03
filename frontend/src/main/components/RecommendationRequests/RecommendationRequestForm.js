@@ -16,7 +16,7 @@ function RecommendationRequestForm({
   // Stryker restore all
 
   // Stryker disable Regex
-  const isodate_regex = /^(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(:[0-5]\d)?)$/;
+  const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
 
   const navigate = useNavigate();
@@ -87,7 +87,9 @@ function RecommendationRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="dateRequested">Date Requested</Form.Label>
+      <Form.Label htmlFor="dateRequested">
+    Date Requested <small className="text-muted">(ISO: YYYY-MM-DDTHH:MM or YYYY-MM-DDTHH:MM:SS)</small>
+  </Form.Label>
         <Form.Control
           id="dateRequested"
           type="text"
@@ -107,7 +109,9 @@ function RecommendationRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="dateNeeded">Date Needed</Form.Label>
+      <Form.Label htmlFor="dateNeeded">
+    Date Needed <small className="text-muted">(ISO: YYYY-MM-DDTHH:MM or YYYY-MM-DDTHH:MM:SS)</small>
+  </Form.Label>
         <Form.Control
           id="dateNeeded"
           type="text"
