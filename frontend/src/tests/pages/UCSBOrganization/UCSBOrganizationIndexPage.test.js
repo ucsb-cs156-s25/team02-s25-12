@@ -192,14 +192,6 @@ describe("UCSBOrganizationIndexPage tests", () => {
   });
 
   test("renders empty table when backend returns null data", async () => {
-    const currentUser = {
-      root: {
-        user: {
-          roles: ["ROLE_USER"],
-        },
-      },
-    };
-
     axiosMock.onGet("/api/ucsborganizations/all").reply(200, null);
 
     render(
@@ -214,7 +206,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
       expect(screen.getByTestId("UCSBOrganizationTable")).toBeInTheDocument();
     });
 
-    const table = screen.getByTestId("UCSBOrganizationTable");
-    expect(table.querySelector("tbody")).toBeEmpty();
+    const tbody = screen.getByRole("rowgroup");
+    expect(tbody).toBeEmpty();
   });
 });

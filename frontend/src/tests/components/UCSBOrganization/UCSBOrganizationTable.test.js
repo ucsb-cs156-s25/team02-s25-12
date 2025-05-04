@@ -80,7 +80,8 @@ describe("UCSBOrganizationTable tests", () => {
 
     const table = screen.getByTestId("UCSBOrganizationTable");
     expect(table).toBeInTheDocument();
-    expect(table.querySelector("tbody")).toBeEmpty();
+    const tbody = screen.getByRole("rowgroup");
+    expect(tbody).toBeEmpty();
   });
 
   test("Has the expected column headers, content and buttons for admin user", () => {
