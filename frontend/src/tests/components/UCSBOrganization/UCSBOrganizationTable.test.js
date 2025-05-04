@@ -84,7 +84,7 @@ describe("UCSBOrganizationTable tests", () => {
 
     const table = screen.getByRole("table");
     expect(table).toBeInTheDocument();
-    
+
     // Check that there are no rows in the table
     const rows = screen.queryAllByRole("row");
     expect(rows.length).toBe(1); // Only header row should be present
