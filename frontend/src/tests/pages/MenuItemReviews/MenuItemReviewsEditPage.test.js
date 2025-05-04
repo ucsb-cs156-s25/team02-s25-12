@@ -80,14 +80,16 @@ describe("MenuItemReviewsEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/menuitemreviews", { params: { id: 1 } }).reply(200, {
-        id: 1,
-        itemId: 6,
-        reviewerEmail: "simonryan@ucsb.edu",
-        stars: 5,
-        comments: "amazing",
-        dateReviewed: "3020-01-20T01:02:00",
-      });
+      axiosMock
+        .onGet("/api/menuitemreviews", { params: { id: 1 } })
+        .reply(200, {
+          id: 1,
+          itemId: 6,
+          reviewerEmail: "simonryan@ucsb.edu",
+          stars: 5,
+          comments: "amazing",
+          dateReviewed: "3020-01-20T01:02:00",
+        });
       axiosMock.onPut("/api/menuitemreviews").reply(200, {
         id: 1,
         itemId: 6,
