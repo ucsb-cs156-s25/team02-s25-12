@@ -164,7 +164,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(mockNavigate).toHaveBeenCalledWith({ to: "/ucsborganizations" });
 
       expect(axiosMock.history.put.length).toBe(1); // times called
-      expect(axiosMock.history.put[0].params).toEqual({ orgCode: "ACM" });
+      expect(axiosMock.history.put[0].params).toEqual({ id: "ACM1" });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
           orgCode: "ACM1",

@@ -12,14 +12,11 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     data: ucsborganization,
     _error,
     _status,
-  } = useBackend(
-    [`/api/ucsborganizations?orgCode=${id}`],
-    {
-      method: "GET",
-      url: `/api/ucsborganizations`,
-      params: { orgCode: id },
-    },
-  );
+  } = useBackend([`/api/ucsborganizations?orgCode=${id}`], {
+    method: "GET",
+    url: `/api/ucsborganizations`,
+    params: { orgCode: id },
+  });
 
   const objectToAxiosPutParams = (ucsborganization) => ({
     url: "/api/ucsborganizations",
@@ -39,11 +36,9 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     );
   };
 
-  const mutation = useBackendMutation(
-    objectToAxiosPutParams,
-    { onSuccess },
-    [`/api/ucsborganizations?orgCode=${id}`],
-  );
+  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
+    `/api/ucsborganizations?orgCode=${id}`,
+  ]);
 
   const { isSuccess } = mutation;
 
