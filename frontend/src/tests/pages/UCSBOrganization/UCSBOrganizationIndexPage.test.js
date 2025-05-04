@@ -73,7 +73,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
     setupUserOnly();
     axiosMock
       .onGet("/api/ucsborganizations/all")
-      .reply(200, ucsbOrganizationFixtures.threeOrganization);
+      .reply(200, ucsbOrganizationFixtures.threeOrganizations);
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -148,7 +148,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
 
     axiosMock
       .onGet("/api/ucsborganizations/all")
-      .reply(200, ucsbOrganizationFixtures.threeOrganization);
+      .reply(200, ucsbOrganizationFixtures.threeOrganizations);
     axiosMock
       .onDelete("/api/ucsborganizations")
       .reply(200, "Organization with id 4 was deleted");
