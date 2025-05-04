@@ -133,7 +133,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(orgTranslationShortField).toBeInTheDocument();
       expect(orgTranslationShortField).toHaveValue("ASSOC COMPUTING MACH");
       expect(orgTranslationField).toBeInTheDocument();
-      expect(orgTranslationField).toHaveValue("ASSOCIATION FOR COMPUTING MACHINERY AT UCSB");
+      expect(orgTranslationField).toHaveValue(
+        "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB",
+      );
       expect(inactiveField).toBeInTheDocument();
       expect(inactiveField).toHaveValue("false");
 
@@ -196,7 +198,9 @@ describe("UCSBOrganizationEditPage tests", () => {
 
       expect(orgCodeField).toHaveValue("ACM");
       expect(orgTranslationShortField).toHaveValue("ASSOC COMPUTING MACH");
-      expect(orgTranslationField).toHaveValue("ASSOCIATION FOR COMPUTING MACHINERY AT UCSB");
+      expect(orgTranslationField).toHaveValue(
+        "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB",
+      );
       expect(inactiveField).toHaveValue("false");
       expect(submitButton).toBeInTheDocument();
 
