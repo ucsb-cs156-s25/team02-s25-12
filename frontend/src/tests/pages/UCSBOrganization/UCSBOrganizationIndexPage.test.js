@@ -203,12 +203,15 @@ describe("UCSBOrganizationIndexPage tests", () => {
       </QueryClientProvider>,
     );
 
+    // Wait for the table to be rendered
     await waitFor(() => {
       expect(screen.getByRole("table")).toBeInTheDocument();
     });
 
-    // Check that there are no data rows in the table
-    const rows = screen.queryAllByRole("row");
-    expect(rows.length).toBe(1); // Only header row should be present
+    // Wait for the table to be empty (only header row)
+    await waitFor(() => {
+      const rows = screen.queryAllByRole("row");
+      expect(rows.length).toBe(1); // Only header row should be present
+    });
   });
 });
