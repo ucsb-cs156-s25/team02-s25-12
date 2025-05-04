@@ -1,11 +1,12 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
-import UCSBOrganizationTable from "main/components/UCSBOrganizations/UCSBOrganizationTable";
+import UCSBOrganizationTable from "main/components/UCSBOrganization/UCSBOrganizationTable";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import * as useBackend from "main/utils/useBackend";
 
 const mockedNavigate = jest.fn();
 
@@ -291,5 +292,93 @@ describe("UCSBOrganizationTable tests", () => {
     // assert - check that the delete endpoint was called
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "ACM" });
+  });
+});
+
+describe("UCSBOrganizationTable mutation and edge case tests", () => {
+  const queryClient = new QueryClient();
+  const testId = "UCSBOrganizationTable";
+
+  test("Delete button calls useBackendMutation's mutate", () => {
+    const currentUser = currentUserFixtures.adminUser;
+    const mutateMock = jest.fn();
+    jest.spyOn(useBackend, "useBackendMutation").mockReturnValue({ mutate: mutateMock });
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable
+            ucsborganizations={ucsbOrganizationFixtures.threeOrganizations}
+            currentUser={currentUser}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+
+    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    fireEvent.click(deleteButton);
+    expect(mutateMock).toHaveBeenCalled();
+  });
+
+  test("No edit/delete buttons for null currentUser", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable
+            ucsborganizations={ucsbOrganizationFixtures.threeOrganizations}
+            currentUser={null}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+  });
+
+  test("No edit/delete buttons for user with no roles", () => {
+    const currentUser = { root: { rolesList: [] } };
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable
+            ucsborganizations={ucsbOrganizationFixtures.threeOrganizations}
+            currentUser={currentUser}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+  });
+
+  test("Handles malformed ucsborganizations data", () => {
+    const currentUser = currentUserFixtures.adminUser;
+    const malformedData = [{}, { orgCode: "X" }];
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable
+            ucsborganizations={malformedData}
+            currentUser={currentUser}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    expect(screen.getAllByRole("row").length).toBeGreaterThan(0);
+  });
+
+  test("Renders with undefined currentUser", () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable
+            ucsborganizations={ucsbOrganizationFixtures.threeOrganizations}
+            currentUser={undefined}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+    expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
   });
 });
