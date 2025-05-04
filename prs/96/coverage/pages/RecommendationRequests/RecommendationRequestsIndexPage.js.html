@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsIndexPage.js</title>
+    <title>Code coverage report for pages/RecommendationRequests/RecommendationRequestsIndexPage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/UCSBDiningCommonsMenuItems</a> UCSBDiningCommonsMenuItemsIndexPage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/RecommendationRequests</a> RecommendationRequestsIndexPage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -167,21 +167,21 @@
 import { useBackend } from "main/utils/useBackend";
 &nbsp;
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import UCSBDiningCommonsMenuItemTable from "main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemTable";
+import RecommendationRequestTable from "main/components/RecommendationRequests/RecommendationRequestTable";
 import { useCurrentUser, hasRole } from "main/utils/currentUser";
 import { Button } from "react-bootstrap";
 &nbsp;
-export default function UCSBDiningCommonsMenuItemIndexPage() {
+export default function RecommendationRequestsIndexPage() {
   const currentUser = useCurrentUser();
 &nbsp;
   const {
-    data: ucsbdiningcommonsmenuitems,
+    data: recommendationRequests,
     error: _error,
     status: _status,
   } = useBackend(
     // Stryker disable next-line all : don't test internal caching of React Query
-    ["/api/ucsbdiningcommonsmenuitems/all"],
-    { method: "GET", url: "/api/ucsbdiningcommonsmenuitems/all" },
+    ["/api/recommendationrequest/all"],
+    { method: "GET", url: "/api/recommendationrequest/all" },
     // Stryker disable next-line all : don't test default value of empty list
     [],
   );
@@ -191,10 +191,10 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
       return (
         &lt;Button
           variant="primary"
-          href="/ucsbdiningcommonsmenuitems/create"
+          href="/recommendationrequests/create"
           style={{ float: "right" }}
         &gt;
-          Create Menu Item
+          Create Recommendation Request
         &lt;/Button&gt;
       );
     }
@@ -204,9 +204,9 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
         {createButton()}
-        &lt;h1&gt;Menu Items&lt;/h1&gt;
-        &lt;UCSBDiningCommonsMenuItemTable
-          ucsbdiningcommonsmenuitems={ucsbdiningcommonsmenuitems}
+        &lt;h1&gt;Recommendation Requests&lt;/h1&gt;
+        &lt;RecommendationRequestTable
+          recommendationRequests={recommendationRequests}
           currentUser={currentUser}
         /&gt;
       &lt;/div&gt;
