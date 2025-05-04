@@ -262,7 +262,7 @@ describe("UCSBOrganizationTable tests", () => {
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
       .onDelete("/api/ucsborganizations")
-      .reply(200, { message: "UCSBOrganizations deleted" });
+      .reply(200, { message: "UCSBOrganization deleted" });
 
     // act - render the component
     render(
