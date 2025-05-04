@@ -192,6 +192,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
   });
 
   test("renders empty table when backend returns null data", async () => {
+    setupAdminUser();
     axiosMock.onGet("/api/ucsborganizations/all").reply(200, null);
 
     render(
@@ -203,7 +204,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId("UCSBOrganizationTable")).toBeInTheDocument();
+      expect(screen.getByRole("table")).toBeInTheDocument();
     });
 
     const tbody = screen.getByRole("rowgroup");

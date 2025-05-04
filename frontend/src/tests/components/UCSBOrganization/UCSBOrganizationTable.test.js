@@ -72,10 +72,14 @@ describe("UCSBOrganizationTable tests", () => {
     };
 
     render(
-      <UCSBOrganizationTable
-        ucsborganizations={null}
-        currentUser={currentUser}
-      />,
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable
+            ucsborganizations={null}
+            currentUser={currentUser}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>,
     );
 
     const table = screen.getByTestId("UCSBOrganizationTable");
