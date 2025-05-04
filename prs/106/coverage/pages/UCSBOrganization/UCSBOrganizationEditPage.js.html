@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -138,19 +138,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,27 +162,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,20 +204,20 @@ import { Navigate } from "react-router-dom";
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 &nbsp;
-export default function UCSBOrganizationEditPage({ storybook = false }) {
-  let { id } = useParams();
+export default function <span class="fstat-no" title="function not covered" >UCSBOrganizationEditPage(</span>{ storybook = <span class="branch-0 cbranch-no" title="branch not covered" >false </span>}) {
+  let { id } = <span class="cstat-no" title="statement not covered" >useParams();</span>
 &nbsp;
   const {
     data: ucsborganization,
     _error,
     _status,
-  } = useBackend([`/api/ucsborganizations?orgCode=${id}`], {
+  } = <span class="cstat-no" title="statement not covered" >useBackend([`/api/ucsborganizations?orgCode=${id}`], {</span>
     method: "GET",
     url: `/api/ucsborganizations`,
     params: { orgCode: id },
   });
 &nbsp;
-  const objectToAxiosPutParams = (ucsborganization) =&gt; ({
+  const objectToAxiosPutParams = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(u</span>csborganization) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
     url: "/api/ucsborganizations",
     method: "PUT",
     params: { id: ucsborganization.orgCode },
@@ -229,27 +229,27 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     },
   });
 &nbsp;
-  const onSuccess = (ucsborganization) =&gt; {
-    toast(
+  const onSuccess = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(u</span>csborganization) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    toast(</span>
       `Organization Updated - id: ${ucsborganization.orgCode} orgCode: ${ucsborganization.orgCode}`,
     );
   };
 &nbsp;
-  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
+  const mutation = <span class="cstat-no" title="statement not covered" >useBackendMutation(objectToAxiosPutParams, { onSuccess }, [</span>
     `/api/ucsborganizations?orgCode=${id}`,
   ]);
 &nbsp;
-  const { isSuccess } = mutation;
+  const { isSuccess } = <span class="cstat-no" title="statement not covered" >mutation;</span>
 &nbsp;
-  const onSubmit = async (data) =&gt; {
-    mutation.mutate(data);
+  const onSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (data) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    mutation.mutate(data);</span>
   };
 &nbsp;
-  if (isSuccess &amp;&amp; !storybook) {
-    return &lt;Navigate to="/ucsborganizations" /&gt;;
+<span class="cstat-no" title="statement not covered" >  if (isSuccess &amp;&amp; !storybook) {</span>
+<span class="cstat-no" title="statement not covered" >    return &lt;Navigate to="/ucsborganizations" /&gt;;</span>
   }
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;BasicLayout&gt;
       &lt;div className="pt-2"&gt;
         &lt;h1&gt;Edit Organization&lt;/h1&gt;
@@ -271,7 +271,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-04T09:21:32.540Z
+                at 2025-05-04T09:33:55.487Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
