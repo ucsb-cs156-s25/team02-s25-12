@@ -151,7 +151,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
       .reply(200, ucsbOrganizationFixtures.threeOrganizations);
     axiosMock
       .onDelete("/api/ucsborganizations")
-      .reply(200, "Organization with id 4 was deleted");
+      .reply(200, "Organization with orgCode ACM was deleted");
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -180,7 +180,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
 
     await waitFor(() => {
       expect(mockToast).toHaveBeenCalledWith(
-        "Organization with id 4 was deleted",
+        "Organization with orgCode ACM was deleted"
       );
     });
 
@@ -188,7 +188,33 @@ describe("UCSBOrganizationIndexPage tests", () => {
       expect(axiosMock.history.delete.length).toBe(1);
     });
     expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganizations");
-    expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganizations");
     expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "ACM" });
+  });
+
+  test("renders empty table when backend returns null data", async () => {
+    const currentUser = {
+      root: {
+        user: {
+          roles: ["ROLE_USER"],
+        },
+      },
+    };
+
+    axiosMock.onGet("/api/ucsborganizations/all").reply(200, null);
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationIndexPage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByTestId("UCSBOrganizationTable")).toBeInTheDocument();
+    });
+
+    const table = screen.getByTestId("UCSBOrganizationTable");
+    expect(table.querySelector("tbody")).toBeEmpty();
   });
 });

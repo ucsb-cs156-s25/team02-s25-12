@@ -62,6 +62,27 @@ describe("UCSBOrganizationTable tests", () => {
     });
   });
 
+  test("renders empty table when ucsborganizations is null", () => {
+    const currentUser = {
+      root: {
+        user: {
+          roles: ["ROLE_USER"],
+        },
+      },
+    };
+
+    render(
+      <UCSBOrganizationTable
+        ucsborganizations={null}
+        currentUser={currentUser}
+      />,
+    );
+
+    const table = screen.getByTestId("UCSBOrganizationTable");
+    expect(table).toBeInTheDocument();
+    expect(table.querySelector("tbody")).toBeEmpty();
+  });
+
   test("Has the expected column headers, content and buttons for admin user", () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
