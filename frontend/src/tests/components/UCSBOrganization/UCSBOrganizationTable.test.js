@@ -302,7 +302,9 @@ describe("UCSBOrganizationTable mutation and edge case tests", () => {
   test("Delete button calls useBackendMutation's mutate", () => {
     const currentUser = currentUserFixtures.adminUser;
     const mutateMock = jest.fn();
-    jest.spyOn(useBackend, "useBackendMutation").mockReturnValue({ mutate: mutateMock });
+    jest
+      .spyOn(useBackend, "useBackendMutation")
+      .mockReturnValue({ mutate: mutateMock });
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -312,10 +314,12 @@ describe("UCSBOrganizationTable mutation and edge case tests", () => {
             currentUser={currentUser}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     fireEvent.click(deleteButton);
     expect(mutateMock).toHaveBeenCalled();
   });
@@ -329,7 +333,7 @@ describe("UCSBOrganizationTable mutation and edge case tests", () => {
             currentUser={null}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
@@ -345,7 +349,7 @@ describe("UCSBOrganizationTable mutation and edge case tests", () => {
             currentUser={currentUser}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
@@ -362,7 +366,7 @@ describe("UCSBOrganizationTable mutation and edge case tests", () => {
             currentUser={currentUser}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.getAllByRole("row").length).toBeGreaterThan(0);
   });
@@ -376,7 +380,7 @@ describe("UCSBOrganizationTable mutation and edge case tests", () => {
             currentUser={undefined}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
