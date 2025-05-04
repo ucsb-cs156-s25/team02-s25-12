@@ -234,7 +234,7 @@ describe("HelpRequestsEditPage tests", () => {
         target: { value: "table-13" },
       });
       fireEvent.change(requestTimeField, {
-        target: { value: "2023-02-03T13:01:04" },
+        target: { value: "2023-02-03T13:01" },
       });
       fireEvent.change(explanationField, {
         target: { value: "my socks are untied again." },

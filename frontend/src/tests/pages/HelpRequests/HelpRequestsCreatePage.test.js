@@ -69,7 +69,7 @@ describe("HelpRequestsCreatePage tests", () => {
       requesterEmail: "foo@ucsb.edu",
       teamId: "team-12",
       tableOrBreakoutRoom: "table-12",
-      requestTime: "2022-01-02T12:00:00",
+      requestTime: "2022-01-02T12:00",
       explanation: "my socks are untied.",
       solved: true,
     };
