@@ -29,13 +29,13 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     url: "/api/ucsborganizations",
     method: "PUT",
     params: {
-      orgCode: id,
+      id: id,
     },
     data: {
       orgCode: ucsborganization.orgCode,
       orgTranslationShort: ucsborganization.orgTranslationShort,
       orgTranslation: ucsborganization.orgTranslation,
-      inactive: ucsborganization.inactive,
+      inactive: ucsborganization.inactive === "true",
     },
   });
 
