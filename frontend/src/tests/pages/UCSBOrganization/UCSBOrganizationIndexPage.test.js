@@ -180,7 +180,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
 
     await waitFor(() => {
       expect(mockToast).toHaveBeenCalledWith(
-        "Organization with orgCode ACM was deleted"
+        "Organization with orgCode ACM was deleted",
       );
     });
 
