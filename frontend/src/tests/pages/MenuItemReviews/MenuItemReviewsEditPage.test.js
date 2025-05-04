@@ -131,7 +131,7 @@ describe("MenuItemReviewsEditPage tests", () => {
       expect(commentsField).toBeInTheDocument();
       expect(commentsField).toHaveValue("amazing");
       expect(dateReviewedField).toBeInTheDocument();
-      expect(dateReviewedField).toHaveValue("3020-01-20T01:02:00");
+      expect(dateReviewedField).toHaveValue("3020-01-20T01:02");
 
       expect(submitButton).toHaveTextContent("Update");
 
@@ -154,62 +154,61 @@ describe("MenuItemReviewsEditPage tests", () => {
       expect(axiosMock.history.put[0].params).toEqual({ id: 1 });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
-          id: 1,
           itemId: 6,
           reviewerEmail: "simonryan@ucsb.edu",
-          stars: 1,
+          stars: "1",
           comments: "terrible",
           dateReviewed: "3020-01-20T01:02:00",
         }),
       ); // posted object
     });
 
-    // test("Changes when you click Update", async () => {
-    //   render(
-    //     <QueryClientProvider client={queryClient}>
-    //       <MemoryRouter>
-    //         <MenuItemReviewsEditPage />
-    //       </MemoryRouter>
-    //     </QueryClientProvider>,
-    //   );
+    test("Changes when you click Update", async () => {
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <MenuItemReviewsEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
 
-    //   await screen.findByTestId("MenuItemReviewForm-id");
+      await screen.findByTestId("MenuItemReviewForm-id");
 
-    //   const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
-    //   const reviewerEmailField = screen.getByTestId(
-    //     "MenuItemReviewForm-reviewerEmail",
-    //   );
-    //   const starsField = screen.getByTestId("MenuItemReviewForm-stars");
-    //   const commentsField = screen.getByTestId("MenuItemReviewForm-comments");
-    //   const dateReviewedField = screen.getByTestId(
-    //     "MenuItemReviewForm-dateReviewed",
-    //   );
+      const idField = screen.getByLabelText("Id");
+      const itemIdField = screen.getByLabelText("Item Id");
+      const reviewerEmailField = screen.getByLabelText("Reviewer Email");
+      const starsField = screen.getByLabelText("Stars");
+      const commentsField = screen.getByLabelText("Comments");
+      const dateReviewedField = screen.getByLabelText("Date (iso format)");
 
-    //   expect(idField).toBeInTheDocument();
-    //   expect(idField).toHaveValue("1");
-    //   expect(itemIdField).toBeInTheDocument();
-    //   expect(itemIdField).toHaveValue("6");
-    //   expect(reviewerEmailField).toBeInTheDocument();
-    //   expect(reviewerEmailField).toHaveValue("simonryan@ucsb.edu");
-    //   expect(starsField).toBeInTheDocument();
-    //   expect(starsField).toHaveValue("1");
-    //   expect(commentsField).toBeInTheDocument();
-    //   expect(commentsField).toHaveValue("terrible");
-    //   expect(dateReviewedField).toBeInTheDocument();
-    //   expect(dateReviewedField).toHaveValue("3020-01-20T01:02:00");
+      const submitButton = screen.getByText("Update");
 
-    //   fireEvent.change(nameField, {
-    //     target: { value: "Freebirds World Burrito" },
-    //   });
-    //   fireEvent.change(descriptionField, { target: { value: "Big Burritos" } });
+      expect(idField).toBeInTheDocument();
+      expect(idField).toHaveValue("1");
+      expect(itemIdField).toBeInTheDocument();
+      expect(itemIdField).toHaveValue("6");
+      expect(reviewerEmailField).toBeInTheDocument();
+      expect(reviewerEmailField).toHaveValue("simonryan@ucsb.edu");
+      expect(starsField).toBeInTheDocument();
+      expect(starsField).toHaveValue("5");
+      expect(commentsField).toBeInTheDocument();
+      expect(commentsField).toHaveValue("amazing");
+      expect(dateReviewedField).toBeInTheDocument();
+      expect(dateReviewedField).toHaveValue("3020-01-20T01:02");
 
-    //   fireEvent.click(submitButton);
+      fireEvent.change(starsField, {
+        target: { value: "5" },
+      });
+      fireEvent.change(commentsField, {
+        target: { value: "terrible" },
+      });
+      fireEvent.click(submitButton);
 
-    //   await waitFor(() => expect(mockToast).toHaveBeenCalled());
-    //   expect(mockToast).toHaveBeenCalledWith(
-    //     "Review Updated - id: 1 reviewerEmail: simonryan@ucsb.edu",
-    //   );
-    //   expect(mockNavigate).toHaveBeenCalledWith({ to: "/menuitemreviews" });
-    // });
+      await waitFor(() => expect(mockToast).toHaveBeenCalled());
+      expect(mockToast).toHaveBeenCalledWith(
+        "Review Updated - id: 1 reviewerEmail: simonryan@ucsb.edu",
+      );
+      expect(mockNavigate).toHaveBeenCalledWith({ to: "/menuitemreviews" });
+    });
   });
 });

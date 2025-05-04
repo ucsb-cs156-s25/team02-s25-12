@@ -34,11 +34,11 @@ export default function MenuItemReviewsEditPage({ storybook = false }) {
       id: menuitemreview.id,
     },
     data: {
-      itemId: menuitemreview.itemid,
-      reviewerEmail: menuitemreview.revieweremail,
+      itemId: menuitemreview.itemId,
+      reviewerEmail: menuitemreview.reviewerEmail,
       stars: menuitemreview.stars,
       comments: menuitemreview.comments,
-      dateReviewed: menuitemreview.datereviewed,
+      dateReviewed: menuitemreview.dateReviewed,
     },
   });
 
