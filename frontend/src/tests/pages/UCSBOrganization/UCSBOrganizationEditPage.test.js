@@ -102,7 +102,7 @@ describe("UCSBOrganizationEditPage tests", () => {
         orgCode: "ACM1",
         orgTranslationShort: "ASSOC COMPUTING MACH1",
         orgTranslation: "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB1",
-        inactive: "true",
+        inactive: true,
       });
     });
 
@@ -170,7 +170,7 @@ describe("UCSBOrganizationEditPage tests", () => {
           orgCode: "ACM1",
           orgTranslationShort: "ASSOC COMPUTING MACH1",
           orgTranslation: "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB1",
-          inactive: "true",
+          inactive: true,
         }),
       ); // posted object
     });
