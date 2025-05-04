@@ -207,7 +207,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
       expect(screen.getByRole("table")).toBeInTheDocument();
     });
 
-    const tbody = screen.getByRole("rowgroup");
+    const tbody = screen.getByTestId("UCSBOrganizationTable-body");
     expect(tbody).toBeEmpty();
   });
 });

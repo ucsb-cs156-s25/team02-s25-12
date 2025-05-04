@@ -82,9 +82,9 @@ describe("UCSBOrganizationTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const table = screen.getByTestId("UCSBOrganizationTable");
+    const table = screen.getByRole("table");
     expect(table).toBeInTheDocument();
-    const tbody = screen.getByRole("rowgroup");
+    const tbody = screen.getByTestId("UCSBOrganizationTable-body");
     expect(tbody).toBeEmpty();
   });
 
