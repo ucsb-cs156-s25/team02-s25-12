@@ -188,7 +188,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
       expect(axiosMock.history.delete.length).toBe(1);
     });
     expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganizations");
-    expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "ACM" });
+    expect(axiosMock.history.delete[0].params).toEqual({ id: "ACM" });
   });
 
   test("renders empty table when backend returns null data", async () => {
