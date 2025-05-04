@@ -31,6 +31,7 @@ function UCSBOrganizationForm({
           {...register("orgCode", {
             required: "orgcode is required.",
           })}
+          disabled={buttonLabel === "Update"}
         />
         <Form.Control.Feedback type="invalid">
           {errors.orgCode?.message}

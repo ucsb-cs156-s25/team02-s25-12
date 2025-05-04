@@ -1,5 +1,5 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider, useQueryClient } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
 
@@ -34,6 +34,8 @@ jest.mock("react-router-dom", () => {
     },
   };
 });
+
+jest.mock("react-query");
 
 describe("UCSBOrganizationEditPage tests", () => {
   describe("when the backend doesn't return data", () => {
@@ -224,6 +226,98 @@ describe("UCSBOrganizationEditPage tests", () => {
         "Organization Updated - id: ACM1 orgCode: ACM1",
       );
       expect(mockNavigate).toHaveBeenCalledWith({ to: "/ucsborganizations" });
+    });
+
+    test("fetches and displays the correct organization for the given id and method", async () => {
+      const axiosMock = new AxiosMockAdapter(axios);
+      axiosMock
+        .onGet("/api/ucsborganizations", { params: { orgCode: "ACM" } })
+        .reply(200, {
+          orgCode: "ACM",
+          orgTranslationShort: "SHORT",
+          orgTranslation: "LONG",
+          inactive: false,
+        });
+
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter initialEntries={["/ucsborganizations/edit/ACM"]}>
+            <UCSBOrganizationEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>
+      );
+
+      expect(await screen.findByDisplayValue("ACM")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("SHORT")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("LONG")).toBeInTheDocument();
+    });
+
+    test("sends correct inactive value in PUT request", async () => {
+      const axiosMock = new AxiosMockAdapter(axios);
+      axiosMock
+        .onGet("/api/ucsborganizations", { params: { orgCode: "ACM" } })
+        .reply(200, {
+          orgCode: "ACM",
+          orgTranslationShort: "SHORT",
+          orgTranslation: "LONG",
+          inactive: false,
+        });
+      axiosMock.onPut("/api/ucsborganizations").reply(200);
+
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <UCSBOrganizationEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>
+      );
+
+      await screen.findByDisplayValue("ACM");
+
+      fireEvent.change(screen.getByTestId("UCSBOrganizationForm-inactive"), {
+        target: { value: "true" },
+      });
+
+      fireEvent.click(screen.getByText("Update"));
+
+      await waitFor(() => {
+        expect(axiosMock.history.put.length).toBe(1);
+        const data = JSON.parse(axiosMock.history.put[0].data);
+        expect(data.inactive).toBe(true);
+      });
+    });
+
+    test("invalidates the correct query after update", async () => {
+      const queryClient = { invalidateQueries: jest.fn() };
+      useQueryClient.mockReturnValue(queryClient);
+
+      const axiosMock = new AxiosMockAdapter(axios);
+      axiosMock
+        .onGet("/api/ucsborganizations", { params: { orgCode: "ACM" } })
+        .reply(200, {
+          orgCode: "ACM",
+          orgTranslationShort: "SHORT",
+          orgTranslation: "LONG",
+          inactive: false,
+        });
+      axiosMock.onPut("/api/ucsborganizations").reply(200);
+
+      render(
+        <QueryClientProvider client={new QueryClient()}>
+          <MemoryRouter>
+            <UCSBOrganizationEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>
+      );
+
+      await screen.findByDisplayValue("ACM");
+      fireEvent.click(screen.getByText("Update"));
+
+      await waitFor(() => {
+        expect(queryClient.invalidateQueries).toHaveBeenCalledWith([
+          "/api/ucsborganizations?orgCode=ACM",
+        ]);
+      });
     });
   });
 });
