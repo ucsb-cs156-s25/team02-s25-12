@@ -109,7 +109,9 @@ describe("UCSBOrganizationTable tests", () => {
     ).toHaveTextContent("IEEE STUDENT BRANCH");
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`),
-    ).toHaveTextContent("INSTITUTE OF ELECTRICAL & ELECTRONICS ENGINEERS STUDENT BRANCH");
+    ).toHaveTextContent(
+      "INSTITUTE OF ELECTRICAL & ELECTRONICS ENGINEERS STUDENT BRANCH",
+    );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-inactive`),
     ).toHaveTextContent("false");
@@ -188,7 +190,9 @@ describe("UCSBOrganizationTable tests", () => {
     ).toHaveTextContent("IEEE STUDENT BRANCH");
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`),
-    ).toHaveTextContent("INSTITUTE OF ELECTRICAL & ELECTRONICS ENGINEERS STUDENT BRANCH");
+    ).toHaveTextContent(
+      "INSTITUTE OF ELECTRICAL & ELECTRONICS ENGINEERS STUDENT BRANCH",
+    );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-inactive`),
     ).toHaveTextContent("false");
