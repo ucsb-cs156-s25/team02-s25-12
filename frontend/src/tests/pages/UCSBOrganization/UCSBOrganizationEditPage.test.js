@@ -89,7 +89,7 @@ describe("UCSBOrganizationEditPage tests", () => {
 
       // Mock the specific API call
       axiosMock
-        .onGet("/api/ucsborganizations", { params: { code: "ACM" } })
+        .onGet("/api/ucsborganizations", { params: { orgCode: "ACM" } })
         .reply(200, {
           orgCode: "ACM",
           orgTranslationShort: "ASSOC COMPUTING MACH",
