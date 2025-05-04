@@ -84,8 +84,10 @@ describe("UCSBOrganizationTable tests", () => {
 
     const table = screen.getByRole("table");
     expect(table).toBeInTheDocument();
-    const tbody = screen.getByTestId("UCSBOrganizationTable-body");
-    expect(tbody).toBeEmpty();
+    
+    // Check that there are no rows in the table
+    const rows = screen.queryAllByRole("row");
+    expect(rows.length).toBe(1); // Only header row should be present
   });
 
   test("Has the expected column headers, content and buttons for admin user", () => {

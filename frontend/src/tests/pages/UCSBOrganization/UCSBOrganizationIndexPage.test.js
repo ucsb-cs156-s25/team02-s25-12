@@ -207,7 +207,8 @@ describe("UCSBOrganizationIndexPage tests", () => {
       expect(screen.getByRole("table")).toBeInTheDocument();
     });
 
-    const tbody = screen.getByTestId("UCSBOrganizationTable-body");
-    expect(tbody).toBeEmpty();
+    // Check that there are no data rows in the table
+    const rows = screen.queryAllByRole("row");
+    expect(rows.length).toBe(1); // Only header row should be present
   });
 });
