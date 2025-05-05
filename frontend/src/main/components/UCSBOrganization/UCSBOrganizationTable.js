@@ -64,7 +64,7 @@ export default function UCSBOrganizationTable({
 
   return (
     <OurTable
-      data={ucsborganizations}
+      data={ucsborganizations || []}
       columns={columns}
       testid={testIdPrefix}
     />

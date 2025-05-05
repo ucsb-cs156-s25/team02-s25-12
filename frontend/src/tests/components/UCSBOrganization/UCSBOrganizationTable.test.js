@@ -62,6 +62,34 @@ describe("UCSBOrganizationTable tests", () => {
     });
   });
 
+  test("renders empty table when ucsborganizations is null", () => {
+    const currentUser = {
+      root: {
+        user: {
+          roles: ["ROLE_USER"],
+        },
+      },
+    };
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <UCSBOrganizationTable
+            ucsborganizations={null}
+            currentUser={currentUser}
+          />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    const table = screen.getByRole("table");
+    expect(table).toBeInTheDocument();
+
+    // Check that there are no rows in the table
+    const rows = screen.queryAllByRole("row");
+    expect(rows.length).toBe(1); // Only header row should be present
+  });
+
   test("Has the expected column headers, content and buttons for admin user", () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
@@ -262,7 +290,7 @@ describe("UCSBOrganizationTable tests", () => {
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
       .onDelete("/api/ucsborganizations")
-      .reply(200, { message: "UCSBOrganizations deleted" });
+      .reply(200, { message: "UCSBOrganization deleted" });
 
     // act - render the component
     render(
@@ -291,7 +319,7 @@ describe("UCSBOrganizationTable tests", () => {
 
     // assert - check that the delete endpoint was called
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
-    expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "ACM" });
+    expect(axiosMock.history.delete[0].params).toEqual({ id: "ACM" });
   });
 });
 
