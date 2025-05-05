@@ -133,7 +133,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(orgTranslationShortField).toBeInTheDocument();
       expect(orgTranslationShortField).toHaveValue("ASSOC COMPUTING MACH");
       expect(orgTranslationField).toBeInTheDocument();
-      expect(orgTranslationField).toHaveValue("ASSOCIATION FOR COMPUTING MACHINERY AT UCSB");
+      expect(orgTranslationField).toHaveValue(
+        "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB",
+      );
       expect(inactiveField).toBeInTheDocument();
       expect(inactiveField).toHaveValue("false");
 
@@ -153,7 +155,7 @@ describe("UCSBOrganizationEditPage tests", () => {
 
       await waitFor(() => expect(mockToast).toHaveBeenCalled());
       expect(mockToast).toHaveBeenCalledWith(
-        "Organization Updated - id: ACM orgCode: ACM"
+        "Organization Updated - id: ACM orgCode: ACM",
       );
 
       expect(mockNavigate).toHaveBeenCalledWith({ to: "/ucsborganizations" });
@@ -162,10 +164,10 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(axiosMock.history.put[0].params).toEqual({ id: "ACM" });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
-            orgCode: "ACM",
-            orgTranslationShort: "ASSOC COMPUTING MACH1",
-            orgTranslation: "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB1",
-            inactive: "true",
+          orgCode: "ACM",
+          orgTranslationShort: "ASSOC COMPUTING MACH1",
+          orgTranslation: "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB1",
+          inactive: "true",
         }),
       ); // posted object
     });
@@ -193,7 +195,9 @@ describe("UCSBOrganizationEditPage tests", () => {
 
       expect(orgCodeField).toHaveValue("ACM");
       expect(orgTranslationShortField).toHaveValue("ASSOC COMPUTING MACH");
-      expect(orgTranslationField).toHaveValue("ASSOCIATION FOR COMPUTING MACHINERY AT UCSB");
+      expect(orgTranslationField).toHaveValue(
+        "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB",
+      );
       expect(inactiveField).toHaveValue("false");
       expect(submitButton).toBeInTheDocument();
 
@@ -214,7 +218,7 @@ describe("UCSBOrganizationEditPage tests", () => {
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toHaveBeenCalledWith(
-        "Organization Updated - id: ACM orgCode: ACM"
+        "Organization Updated - id: ACM orgCode: ACM",
       );
       expect(mockNavigate).toHaveBeenCalledWith({ to: "/ucsborganizations" });
     });
