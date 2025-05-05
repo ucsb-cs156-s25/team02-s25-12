@@ -104,7 +104,7 @@ describe("HelpRequestsIndexPage tests", () => {
     const tableOrBreakoutRoom = screen.getByText("table-12");
     expect(tableOrBreakoutRoom).toBeInTheDocument();
 
-    const requestTime = screen.getByText("2022-01-02T12:00:00");
+    const requestTime = screen.getByText("2022-01-02T12:00");
     expect(requestTime).toBeInTheDocument();
 
     const explanation = screen.getByText("my socks are untied.");

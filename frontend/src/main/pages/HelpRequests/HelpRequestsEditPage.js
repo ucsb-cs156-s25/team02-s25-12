@@ -1,11 +1,80 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
+import { useParams } from "react-router-dom";
+import HelpRequestForm from "main/components/HelpRequests/HelpRequestForm";
+import { Navigate } from "react-router-dom";
+import { useBackend, useBackendMutation } from "main/utils/useBackend";
+import { toast } from "react-toastify";
 
-export default function HelpRequestsEditPage() {
-  // Stryker disable all : placeholder for future implementation
+export default function HelpRequestsEditPage({ storybook = false }) {
+  let { id } = useParams();
+
+  const {
+    data: helpRequest,
+    _error,
+    _status,
+  } = useBackend(
+    // Stryker disable next-line all : don't test internal caching of React Query
+    [`/api/helprequests?id=${id}`],
+    {
+      // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
+      method: "GET",
+      url: `/api/helprequests`,
+      params: {
+        id,
+      },
+    },
+  );
+
+  const objectToAxiosPutParams = (helpRequest) => ({
+    url: "/api/helprequests",
+    method: "PUT",
+    params: {
+      id: helpRequest.id,
+    },
+    data: {
+      requesterEmail: helpRequest.requesterEmail,
+      teamId: helpRequest.teamId,
+      tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
+      requestTime: helpRequest.requestTime,
+      explanation: helpRequest.explanation,
+      solved: helpRequest.solved,
+    },
+  });
+
+  const onSuccess = (helpRequest) => {
+    toast(
+      `HelpRequest Updated - id: ${helpRequest.id} email: ${helpRequest.requesterEmail}`,
+    );
+  };
+
+  const mutation = useBackendMutation(
+    objectToAxiosPutParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to set up test for caching
+    [`/api/helprequests?id=${id}`],
+  );
+
+  const { isSuccess } = mutation;
+
+  const onSubmit = async (data) => {
+    mutation.mutate(data);
+  };
+
+  if (isSuccess && !storybook) {
+    return <Navigate to="/helprequests" />;
+  }
+
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>Edit page not yet implemented</h1>
+        <h1>Edit Help Request</h1>
+        {helpRequest && (
+          <HelpRequestForm
+            submitAction={onSubmit}
+            buttonLabel={"Update"}
+            initialContents={helpRequest}
+          />
+        )}
       </div>
     </BasicLayout>
   );
