@@ -84,11 +84,11 @@ public class UCSBDiningCommonsMenuItemIT {
                 // arrange
 
                 UCSBDiningCommonsMenuItem ucsbdiningcommonsmenuitem1 = UCSBDiningCommonsMenuItem.builder()
-                                .id(1L)
-                                .diningCommonsCode("456")
-                                .name("Taco")
-                                .station("Stand")
-                                .build();
+                        .id(1L)
+                        .diningCommonsCode("456")
+                        .name("Taco")
+                        .station("Stand")
+                        .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
