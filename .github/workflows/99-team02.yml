@@ -266,8 +266,15 @@ jobs:
             # What to do next
 
             Next:
-            * Drag the issue for "${{env.name}} - Create personal dokku dev deployment" directly into the "Done" column (we don't do code review on setup tasks like this one.)
-            * Locate the issue: "Copy files for Backend CRUD API <tt>${{env.name}}</tt> from ${{env.PREV_ASSIGNMENT}}" on the Kanban board.
+            * Drag the issue for "${{env.name}} - Create personal dokku dev deployment" directly 
+              into the "Done" column (we don't do code review on setup tasks like this one.)
+            * Locate the issue: 
+              "Copy files for Backend CRUD API <tt>${{env.name}}</tt> from ${{env.PREV_ASSIGNMENT}}" 
+              on the Kanban board.  
+              * Note that this ${{env.PREV_ASSIGNMENT}} isn't a typo
+              * Yes are working on ${{env.ASSIGNMENT}}
+              * But the next issue involves copying files from ${{env.PREV_ASSIGNMENT}} 
+                into your repo for ${{env.ASSIGNMENT}}
             * Assign that issue to yourself
             * Drag it into the "In Progress" column.
             * Start a new branch.  The new branch name is something like `xy-${{env.name}}-backend`
