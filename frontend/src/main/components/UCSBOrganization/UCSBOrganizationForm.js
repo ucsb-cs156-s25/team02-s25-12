@@ -12,7 +12,17 @@ function UCSBOrganizationForm({
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues: initialContents || {} });
+  } = useForm({
+    defaultValues: {
+      ...(initialContents || {}),
+      inactive:
+        initialContents && typeof initialContents.inactive === "boolean"
+          ? initialContents.inactive
+            ? "true"
+            : "false"
+          : "",
+    },
+  });
   // Stryker restore all
 
   const navigate = useNavigate();
@@ -79,7 +89,10 @@ function UCSBOrganizationForm({
           as="select"
           isInvalid={Boolean(errors.inactive)}
           {...register("inactive", {
-            required: "inactive is required.",
+            // turn "true"/"false" into a real boolean
+            setValueAs: (v) => v === "true",
+            // validate that the final value is actually a boolean
+            validate: (v) => typeof v === "boolean" || "inactive is required.",
           })}
         >
           <option value="">---</option>
