@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/15</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -142,7 +142,9 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,19 +157,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,6 +194,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,26 +234,25 @@ import { toast } from "react-toastify";
 &nbsp;
 export default function UCSBOrganizationEditPage({ storybook = false }) {
   let { id } = useParams();
-&nbsp;
   const {
     data: ucsborganization,
     _error,
     _status,
-  } = useBackend([`/api/ucsborganizations?orgCode=${id}`], {
-    method: "GET",
-    url: `/api/ucsborganizations`,
-    params: { orgCode: id },
-  });
+  } = useBackend(
+    // Stryker disable next-line all : don’t test React Query internal caching
+    [`/api/ucsborganizations?orgCode=${id}`],
+    {
+      // Stryker disable next-line all : GET is default, so mutating this causes no bug
+      method: "GET",
+      url: `/api/ucsborganizations`,
+      params: { orgCode: id },
+    },
+  );
 &nbsp;
   const formInitial = ucsborganization
     ? {
         ...ucsborganization,
-        inactive:
-          typeof ucsborganization.inactive === "boolean"
-            ? <span class="branch-0 cbranch-no" title="branch not covered" >ucsborganization.inactive</span>
-              ? "true"
-              : "false"
-            : (ucsborganization.inactive ?? <span class="branch-1 cbranch-no" title="branch not covered" >"")</span>,
+        inactive: String(ucsborganization.inactive),
       }
     : null;
 &nbsp;
@@ -261,7 +264,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
       orgCode: ucsborganization.orgCode,
       orgTranslationShort: ucsborganization.orgTranslationShort,
       orgTranslation: ucsborganization.orgTranslation,
-      inactive: ucsborganization.inactive, // still the string
+      inactive: ucsborganization.inactive,
     },
   });
 &nbsp;
@@ -271,9 +274,12 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     );
   };
 &nbsp;
-  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
-    `/api/ucsborganizations?orgCode=${id}`,
-  ]);
+  const mutation = useBackendMutation(
+    objectToAxiosPutParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to set up test for caching
+    [`/api/ucsborganizations?orgCode=${id}`],
+  );
 &nbsp;
   const { isSuccess } = mutation;
 &nbsp;
@@ -307,7 +313,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-06T04:05:13.564Z
+                at 2025-05-06T05:27:33.291Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
