@@ -12,30 +12,33 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     data: ucsborganization,
     _error,
     _status,
-  } = useBackend(
-    // Stryker disable next-line all : don't test internal caching of React Query
-    [`/api/ucsborganizations?orgCode=${id}`],
-    {
-      // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
-      method: "GET",
-      url: `/api/ucsborganizations`,
-      params: {
-        orgCode: id,
-      },
-    },
-  );
+  } = useBackend([`/api/ucsborganizations?orgCode=${id}`], {
+    method: "GET",
+    url: `/api/ucsborganizations`,
+    params: { orgCode: id },
+  });
+
+  const formInitial = ucsborganization
+    ? {
+        ...ucsborganization,
+        inactive:
+          typeof ucsborganization.inactive === "boolean"
+            ? ucsborganization.inactive
+              ? "true"
+              : "false"
+            : (ucsborganization.inactive ?? ""),
+      }
+    : null;
 
   const objectToAxiosPutParams = (ucsborganization) => ({
     url: "/api/ucsborganizations",
     method: "PUT",
-    params: {
-      id: id,
-    },
+    params: { id: id },
     data: {
       orgCode: ucsborganization.orgCode,
       orgTranslationShort: ucsborganization.orgTranslationShort,
       orgTranslation: ucsborganization.orgTranslation,
-      inactive: ucsborganization.inactive,
+      inactive: ucsborganization.inactive, // still the string
     },
   });
 
@@ -45,12 +48,9 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     );
   };
 
-  const mutation = useBackendMutation(
-    objectToAxiosPutParams,
-    { onSuccess },
-    // Stryker disable next-line all : hard to set up test for caching
-    [`/api/ucsborganizations?orgCode=${id}`],
-  );
+  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
+    `/api/ucsborganizations?orgCode=${id}`,
+  ]);
 
   const { isSuccess } = mutation;
 
@@ -66,11 +66,11 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     <BasicLayout>
       <div className="pt-2">
         <h1>Edit Organization</h1>
-        {ucsborganization && (
+        {formInitial && (
           <UCSBOrganizationForm
             submitAction={onSubmit}
-            buttonLabel={"Update"}
-            initialContents={ucsborganization}
+            buttonLabel="Update"
+            initialContents={formInitial}
           />
         )}
       </div>

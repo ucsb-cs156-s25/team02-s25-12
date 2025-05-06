@@ -16,10 +16,8 @@ function UCSBOrganizationForm({
     defaultValues: {
       ...(initialContents || {}),
       inactive:
-        initialContents && typeof initialContents.inactive === "boolean"
-          ? initialContents.inactive
-            ? "true"
-            : "false"
+        initialContents && initialContents.inactive != null
+          ? String(initialContents.inactive)
           : "",
     },
   });
@@ -89,10 +87,7 @@ function UCSBOrganizationForm({
           as="select"
           isInvalid={Boolean(errors.inactive)}
           {...register("inactive", {
-            // turn "true"/"false" into a real boolean
-            setValueAs: (v) => v === "true",
-            // validate that the final value is actually a boolean
-            validate: (v) => typeof v === "boolean" || "inactive is required.",
+            validate: (v) => (v != null && v !== "") || "inactive is required.",
           })}
         >
           <option value="">---</option>
