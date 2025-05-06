@@ -40,7 +40,6 @@ function RecommendationRequestForm({
           />
         </Form.Group>
       )}
-
       <Form.Group className="mb-3">
         <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
         <Form.Control
@@ -54,7 +53,6 @@ function RecommendationRequestForm({
           {errors.requesterEmail && "Requester Email is required."}
         </Form.Control.Feedback>
       </Form.Group>
-
       <Form.Group className="mb-3">
         <Form.Label htmlFor="professorEmail">Professor Email</Form.Label>
         <Form.Control
@@ -68,7 +66,6 @@ function RecommendationRequestForm({
           {errors.professorEmail && "Professor Email is required."}
         </Form.Control.Feedback>
       </Form.Group>
-
       <Form.Group className="mb-3">
         <Form.Label htmlFor="explanation">Explanation</Form.Label>
         <Form.Control
@@ -83,7 +80,6 @@ function RecommendationRequestForm({
           {errors.explanation && "Explanation is required."}
         </Form.Control.Feedback>
       </Form.Group>
-
       <Form.Group className="mb-3">
         <Form.Label htmlFor="dateRequested">
           Date Requested&nbsp;
@@ -104,7 +100,6 @@ function RecommendationRequestForm({
             "Date Requested is required and must be ISO‑8601"}
         </Form.Control.Feedback>
       </Form.Group>
-
       <Form.Group className="mb-3">
         <Form.Label htmlFor="dateNeeded">
           Date Needed&nbsp;
@@ -121,11 +116,9 @@ function RecommendationRequestForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.dateNeeded &&
-            "Date Needed is required and must be ISO‑8601"}
+          {errors.dateNeeded && "Date Needed is required and must be ISO‑8601"}
         </Form.Control.Feedback>
       </Form.Group>
-
       <Form.Group className="mb-3">
         <Form.Check
           data-testid={`${testIdPrefix}-done`}
@@ -135,7 +128,6 @@ function RecommendationRequestForm({
           {...register("done")}
         />
       </Form.Group>
-
       <Button data-testid={`${testIdPrefix}-submit`} type="submit">
         {buttonLabel}
       </Button>{" "}

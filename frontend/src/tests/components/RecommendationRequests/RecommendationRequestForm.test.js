@@ -30,9 +30,7 @@ describe("RecommendationRequestForm tests", () => {
   /** asserts that every test‑id element is present */
   const expectAllTestIds = () => {
     ids.forEach((id) =>
-      expect(
-        screen.getByTestId(`${testId}-${id}`),
-      ).toBeInTheDocument(),
+      expect(screen.getByTestId(`${testId}-${id}`)).toBeInTheDocument(),
     );
   };
 
@@ -131,13 +129,9 @@ describe("RecommendationRequestForm tests", () => {
     fireEvent.click(screen.getByTestId(`${testId}-submit`));
 
     await screen.findByText(/Requester Email is required/);
-    expect(
-      screen.getByText(/Professor Email is required/),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Professor Email is required/)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Date Requested is required/),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Date Requested is required/)).toBeInTheDocument();
     expect(screen.getByText(/Date Needed is required/)).toBeInTheDocument();
   });
 });
