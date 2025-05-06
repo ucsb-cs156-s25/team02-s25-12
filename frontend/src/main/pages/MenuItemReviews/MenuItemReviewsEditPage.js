@@ -24,9 +24,7 @@ export default function MenuItemReviewsEditPage({ storybook = false }) {
       },
     },
   );
-
-  console.log("Fetched review data:", menuitemreview);
-
+  
   const objectToAxiosPutParams = (menuitemreview) => ({
     url: "/api/menuitemreviews",
     method: "PUT",
