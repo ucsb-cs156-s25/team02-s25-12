@@ -22,12 +22,12 @@ public class UCSBOrganizationWebIT extends WebTestCase {
         setupUser(true);
 
         page.getByText("UCSB Organizations").click();
-        page.getByText("Create UCSB Organization").click();
-        assertThat(page.getByText("Create New Organization")).isVisible();
-        page.getByTestId("UCSBOrganizationForm-orgcode").fill("ACM");
-        page.getByTestId("UCSBOrganizationForm-orgtranslationshort").fill("ASSOC COMPUTING MACH");
-        page.getByTestId("UCSBOrganizationForm-orgtranslation").fill("ASSOCIATION FOR COMPUTING MACHINERY AT UCSB");
-        page.getByTestId("UCSBOrganizationForm-inactive").check();
+        page.getByText("Create Organization").click();
+        assertThat(page.getByText("Create New UCSB Organization")).isVisible();
+        page.getByTestId("UCSBOrganizationForm-orgCode").fill("ACM");
+        page.getByTestId("UCSBOrganizationForm-orgTranslationShort").fill("ASSOC COMPUTING MACH");
+        page.getByTestId("UCSBOrganizationForm-orgTranslation").fill("ASSOCIATION FOR COMPUTING MACHINERY AT UCSB");
+        page.getByTestId("UCSBOrganizationForm-inactive").selectOption("True");
         page.getByTestId("UCSBOrganizationForm-submit").click();
         assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslationShort"))
                 .hasText("ASSOC COMPUTING MACH");
@@ -38,7 +38,7 @@ public class UCSBOrganizationWebIT extends WebTestCase {
 
         page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit Organization")).isVisible();
-        page.getByTestId("UCSBOrganizationForm-orgtranslationshort").fill("TESTERSHORT");
+        page.getByTestId("UCSBOrganizationForm-orgTranslationShort").fill("TESTERSHORT");
         page.getByTestId("UCSBOrganizationForm-submit").click();
         assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslationShort")).hasText("TESTERSHORT");
         page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Delete-button").click();
@@ -51,7 +51,7 @@ public class UCSBOrganizationWebIT extends WebTestCase {
         setupUser(false);
 
         page.getByText("UCSB Organizations").click();
-        assertThat(page.getByText("Create UCSB Organization")).not().isVisible();
+        assertThat(page.getByText("Create Organization")).not().isVisible();
         assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgcode")).not().isVisible();
     }
 }
