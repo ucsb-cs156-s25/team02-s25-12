@@ -99,7 +99,7 @@ describe("MenuItemReviewForm tests", () => {
     expect(screen.getByText(/Comments is required/)).toBeInTheDocument();
     expect(screen.getByText(/Date Reviewed is required/)).toBeInTheDocument();
 
-    const nameInput = screen.getByTestId(`${testId}-itemid`);
+    const nameInput = screen.getByTestId(`${testId}-itemId`);
     fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
     fireEvent.click(submitButton);
 

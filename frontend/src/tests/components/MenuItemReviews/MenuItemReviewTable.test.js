@@ -101,7 +101,7 @@ describe("MenuItemReviewTable tests", () => {
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-reviewerEmail`),
-    ).toHaveTextContent("simonryan@ucsb.edu");
+    ).toHaveTextContent("simon@ucsb.edu");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -155,7 +155,7 @@ describe("MenuItemReviewTable tests", () => {
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-reviewerEmail`),
-    ).toHaveTextContent("simonryan@ucsb.edu");
+    ).toHaveTextContent("simon@ucsb.edu");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();

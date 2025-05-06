@@ -19,18 +19,18 @@ const menuItemReviewFixtures = {
     {
       id: 2,
       itemId: 4,
-      reviewerEmail: "simonryan@ucsb.edu",
+      reviewerEmail: "simon@ucsb.edu",
       stars: 1,
       comments: "bad",
-      dateReviewed: "2023-01-03T00:00:00",
+      dateReviewed: "2023-01-03T00:00:01",
     },
     {
       id: 3,
       itemId: 47,
-      reviewerEmail: "simonryan@ucsb.edu",
+      reviewerEmail: "s@ucsb.edu",
       stars: 3,
       comments: "average",
-      dateReviewed: "2023-01-03T00:00:00",
+      dateReviewed: "2023-01-03T00:00:02",
     },
   ],
 };
