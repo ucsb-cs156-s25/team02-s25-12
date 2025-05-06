@@ -30,7 +30,7 @@ public class MenuItemReviewWebIT extends WebTestCase {
         page.getByLabel("Stars").fill("5");
         page.getByLabel("Comments").fill("Amazing");
         page.getByLabel("Date (iso format)").fill("2022-01-03T00:00");
-        page.getByTestId("MenuItemReviewForm-submit").click();
+        page.getByText("Create").click();
 
         assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId"))
                 .hasText("7");
