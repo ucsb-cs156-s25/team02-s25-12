@@ -96,7 +96,9 @@ function UCSBOrganizationForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button data-testid={"UCSBOrganizationForm-submit"} type="submit">{buttonLabel}</Button>
+      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+        {buttonLabel}
+      </Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}

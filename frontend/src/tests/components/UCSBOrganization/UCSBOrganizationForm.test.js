@@ -82,6 +82,9 @@ describe("UCSBOrganizationForm tests", () => {
     const inactiveDropdown = await screen.findByTestId(`${testId}-inactive`);
     expect(inactiveDropdown).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-inactive`)).toHaveValue("false");
+
+    const submitButton = await screen.findByTestId(`${testId}-submit`);
+    expect(submitButton).toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
