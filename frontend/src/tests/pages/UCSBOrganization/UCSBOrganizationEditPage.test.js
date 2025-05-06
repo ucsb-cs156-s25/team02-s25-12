@@ -160,7 +160,7 @@ describe("UCSBOrganizationEditPage tests", () => {
 
       expect(mockNavigate).toHaveBeenCalledWith({ to: "/ucsborganizations" });
 
-      expect(axiosMock.history.put.length).toBe(1); // times called
+      expect(axiosMock.history.put.length).toBe(1);
       expect(axiosMock.history.put[0].params).toEqual({ id: "ACM" });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
@@ -169,7 +169,7 @@ describe("UCSBOrganizationEditPage tests", () => {
           orgTranslation: "ASSOCIATION FOR COMPUTING MACHINERY AT UCSB1",
           inactive: "true",
         }),
-      ); // posted object
+      );
     });
 
     test("Changes when you click Update", async () => {

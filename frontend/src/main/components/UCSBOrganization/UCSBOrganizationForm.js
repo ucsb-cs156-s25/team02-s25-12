@@ -15,10 +15,7 @@ function UCSBOrganizationForm({
   } = useForm({
     defaultValues: {
       ...(initialContents || {}),
-      inactive:
-        initialContents && initialContents.inactive != null
-          ? String(initialContents.inactive)
-          : "",
+      inactive: String(initialContents?.inactive ?? ""),
     },
   });
   // Stryker restore all
@@ -87,7 +84,7 @@ function UCSBOrganizationForm({
           as="select"
           isInvalid={Boolean(errors.inactive)}
           {...register("inactive", {
-            validate: (v) => (v != null && v !== "") || "inactive is required.",
+            required: "inactive is required.",
           })}
         >
           <option value="">---</option>
