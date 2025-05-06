@@ -30,6 +30,8 @@ import edu.ucsb.cs156.example.services.CurrentUserService;
 import edu.ucsb.cs156.example.services.GrantedAuthoritiesService;
 import edu.ucsb.cs156.example.testconfig.TestConfig;
 
+import java.time.LocalDateTime;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
@@ -62,7 +64,7 @@ public class MenuItemReviewIT {
 
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
 
-                MenuItemReviews menuItemReviews = MenuItemReviews.builder()
+                MenuItemReviews menuItemReview = MenuItemReviews.builder()
                     .itemId(47)
                     .reviewerEmail("cgaucho@ucsb.edu")
                     .stars(5)
@@ -84,12 +86,13 @@ public class MenuItemReviewIT {
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
-        public void an_admin_user_can_post_a_new_menuitemreview() throws Exception {
+        public void an_admin_user_can_post_a_new_menuitemreviews() throws Exception {
                 // arrange
 
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
 
-                MenuItemReviews menuItemReviews1 = MenuItemReviews.builder()
+                MenuItemReviews menuItemReview1 = MenuItemReviews.builder()
+                    .id(1L)
                     .itemId(47)
                     .reviewerEmail("cgaucho@ucsb.edu")
                     .stars(5)
@@ -99,7 +102,7 @@ public class MenuItemReviewIT {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/menuitemreviews/post?name=Chipotle&description=Mexican")
+                                post("/api/menuitemreviews/post?itemId=47&reviewerEmail=cgaucho@ucsb.edu&stars=5&comments=I love the apple pie&dateReviewed=2022-01-03T00:00:00")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
