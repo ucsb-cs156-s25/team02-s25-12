@@ -24,7 +24,7 @@ export default function MenuItemReviewsEditPage({ storybook = false }) {
       },
     },
   );
-  
+
   const objectToAxiosPutParams = (menuitemreview) => ({
     url: "/api/menuitemreviews",
     method: "PUT",
