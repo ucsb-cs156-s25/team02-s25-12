@@ -47,7 +47,7 @@ function MenuItemReviewForm({
           data-testid={testIdPrefix + "-itemId"}
           id="itemId"
           type="text"
-          isInvalid={Boolean(errors.itemid)}
+          isInvalid={Boolean(errors.itemId)}
           {...register("itemId", {
             required: "Item Id is required",
             maxLength: {
@@ -64,7 +64,7 @@ function MenuItemReviewForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="reviewerEmail">Reviewer Email</Form.Label>
         <Form.Control
-          // data-testid={testIdPrefix + "-revieweremail"}
+          // data-testid={testIdPrefix + "-reviewerEmail"}
           id="reviewerEmail"
           type="text"
           isInvalid={Boolean(errors.revieweremail)}
