@@ -7,30 +7,32 @@ import { toast } from "react-toastify";
 
 export default function UCSBOrganizationEditPage({ storybook = false }) {
   let { id } = useParams();
-
   const {
     data: ucsborganization,
     _error,
     _status,
   } = useBackend(
-    // Stryker disable next-line all : don't test internal caching of React Query
+    // Stryker disable next-line all : don’t test React Query internal caching
     [`/api/ucsborganizations?orgCode=${id}`],
     {
-      // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
+      // Stryker disable next-line all : GET is default, so mutating this causes no bug
       method: "GET",
       url: `/api/ucsborganizations`,
-      params: {
-        orgCode: id,
-      },
+      params: { orgCode: id },
     },
   );
+
+  const formInitial = ucsborganization
+    ? {
+        ...ucsborganization,
+        inactive: String(ucsborganization.inactive),
+      }
+    : null;
 
   const objectToAxiosPutParams = (ucsborganization) => ({
     url: "/api/ucsborganizations",
     method: "PUT",
-    params: {
-      id: id,
-    },
+    params: { id: id },
     data: {
       orgCode: ucsborganization.orgCode,
       orgTranslationShort: ucsborganization.orgTranslationShort,
@@ -66,11 +68,11 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     <BasicLayout>
       <div className="pt-2">
         <h1>Edit Organization</h1>
-        {ucsborganization && (
+        {formInitial && (
           <UCSBOrganizationForm
             submitAction={onSubmit}
-            buttonLabel={"Update"}
-            initialContents={ucsborganization}
+            buttonLabel="Update"
+            initialContents={formInitial}
           />
         )}
       </div>

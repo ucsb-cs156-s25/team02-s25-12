@@ -12,7 +12,12 @@ function UCSBOrganizationForm({
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ defaultValues: initialContents || {} });
+  } = useForm({
+    defaultValues: {
+      ...(initialContents || {}),
+      inactive: String(initialContents?.inactive ?? ""),
+    },
+  });
   // Stryker restore all
 
   const navigate = useNavigate();
