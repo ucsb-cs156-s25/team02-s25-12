@@ -40,6 +40,8 @@ describe("MenuItemReviewForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+    expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
   });
 
   test("renders correctly when passing in initialContents", async () => {
