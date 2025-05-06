@@ -130,7 +130,7 @@ function RecommendationRequestForm({
       </Form.Group>
       <Button data-testid={`${testIdPrefix}-submit`} type="submit">
         {buttonLabel}
-      </Button>{" "}
+      </Button>
       <Button
         data-testid={`${testIdPrefix}-cancel`}
         variant="secondary"

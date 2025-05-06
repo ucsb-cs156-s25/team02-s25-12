@@ -94,7 +94,7 @@ describe("RecommendationRequestsEditPage", () => {
         .onGet("/api/recommendationrequest", { params: { id: 1 } })
         .reply(200, original);
 
-      axiosMock.onPut("/api/recommendationrequest").reply((config) => {
+      axiosMock.onPut("/api/recommendationrequest").reply((_config) => {
         return [
           200,
           {
